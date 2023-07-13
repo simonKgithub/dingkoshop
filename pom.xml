@@ -63,6 +63,12 @@
             <version>4.3.1</version>
         </dependency>
         <!--(종료) Querydsl 사용 -->
+        <!--(시작)Thymeleaf Layout Dialect-->
+        <dependency>
+            <groupId>nz.net.ultraq.thymeleaf</groupId>
+            <artifactId>thymeleaf-layout-dialect</artifactId>
+        </dependency>
+        <!--(종료)Thymeleaf Layout Dialect-->
     </dependencies>
 
     <build>

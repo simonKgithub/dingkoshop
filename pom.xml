@@ -69,6 +69,12 @@
             <artifactId>thymeleaf-layout-dialect</artifactId>
         </dependency>
         <!--(종료)Thymeleaf Layout Dialect-->
+        <!-- (시작) 시큐리티 -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-security</artifactId>
+        </dependency>
+        <!-- (종료) 시큐리티 -->
     </dependencies>
 
     <build>

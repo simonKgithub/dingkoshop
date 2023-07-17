@@ -75,6 +75,12 @@
             <artifactId>spring-boot-starter-security</artifactId>
         </dependency>
         <!-- (종료) 시큐리티 -->
+        <!-- (시작) 유효성검증 -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-validation</artifactId>
+        </dependency>
+        <!-- (종료) 유효성검증 -->
     </dependencies>
 
     <build>

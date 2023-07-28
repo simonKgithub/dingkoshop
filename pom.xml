@@ -94,6 +94,13 @@
             <artifactId>thymeleaf-extras-springsecurity5</artifactId>
         </dependency>
         <!-- (종료) 인가작업 -->
+        <!-- (시작) modelmapper 라이브러리 추가 -->
+        <dependency>
+            <groupId>org.modelmapper</groupId>
+            <artifactId>modelmapper</artifactId>
+            <version>2.3.9</version>
+        </dependency>
+        <!-- (종료) modelmapper 라이브러리 추가 -->
     </dependencies>
 
     <build>

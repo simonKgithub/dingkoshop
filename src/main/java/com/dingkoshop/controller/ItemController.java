@@ -28,7 +28,7 @@ public class ItemController {
 
     private final ItemService itemService;
 
-    @GetMapping("admin/item/new")
+    @GetMapping("/admin/item/new")
     public String itemForm(Model model) {
         model.addAttribute("itemFormDto", new ItemFormDto());
         return "item/itemForm";
@@ -105,5 +105,12 @@ public class ItemController {
 
         return "item/itemMng";
 
+    }
+
+    @GetMapping("/item/{itemId}")
+    public String itemDtl(Model model, @PathVariable("itemId") Long itemId) {
+        ItemFormDto itemFormDto = itemService.getItemDtl(itemId);
+        model.addAttribute("item", itemFormDto);
+        return "item/itemDtl";
     }
 }

@@ -2,6 +2,8 @@ package com.dingkoshop.service;
 
 import com.dingkoshop.dto.CartDetailDto;
 import com.dingkoshop.dto.CartItemDto;
+import com.dingkoshop.dto.CartOrderDto;
+import com.dingkoshop.dto.OrderDto;
 import com.dingkoshop.entity.Cart;
 import com.dingkoshop.entity.CartItem;
 import com.dingkoshop.entity.Item;
@@ -28,6 +30,7 @@ public class CartService {
     private final MemberRepository memberRepository;
     private final CartRepository cartRepository;
     private final CartItemRepository cartItemRepository;
+    private final OrderService orderService;
 
     public void deleteCartItem(Long cartItemId) {
         CartItem cartItem = cartItemRepository.findById(cartItemId).orElseThrow(EntityNotFoundException::new);
@@ -89,5 +92,30 @@ public class CartService {
             cartItemRepository.save(cartItem);
             return cartItem.getId();
         }
+    }
+
+    public Long orderCartItem(List<CartOrderDto> cartOrderDtoList, String email) {
+        List<OrderDto> orderDtoList = new ArrayList<>();
+        for (CartOrderDto cartOrderDto : cartOrderDtoList) {
+            CartItem cartItem =
+                    cartItemRepository.findById(cartOrderDto.getCartItemId())
+                                        .orElseThrow(EntityNotFoundException::new);
+
+            OrderDto orderDto = new OrderDto();
+            orderDto.setItemId(cartItem.getItem().getId());
+            orderDto.setCount(cartItem.getCount());
+            orderDtoList.add(orderDto);
+        }
+
+        Long orderId = orderService.orders(orderDtoList, email);
+
+        for (CartOrderDto cartOrderDto : cartOrderDtoList) {
+            CartItem cartItem =
+                    cartItemRepository.findById(cartOrderDto.getCartItemId())
+                            .orElseThrow(EntityNotFoundException::new);
+            cartItemRepository.delete(cartItem);
+        }
+
+        return orderId;
     }
 }
